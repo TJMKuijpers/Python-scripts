@@ -10,7 +10,7 @@ class PCAplot:
         self.pca_output=None
 
     def perform_pca(self):
-        pca=PCA(n_components=self.number_components)
+        pca=PCA(n_components=self.number_components,svd_solver='randomized')
         pca_output=pca.fit_transform(self.data)
         self.pca_output=pca_output
         self.pca=pca
@@ -26,6 +26,11 @@ class PCAplot:
         plt.title('Variance explained by the {} principal components'.format(number_components.__len__()))
         plt.show()
 
-    def plot_pca_results(self,component_one,component_two,label):
-        plt.figure(figsize=(16,10))
-        sns.scatterplot(x=self.pca_output[:,component_one],y=self.pca_output[:,component_two])
+    def plot_pca_results(self,component_one,component_two,label=None,style_point=None):
+        plt.figure(figsize=(20,15))
+        plt.rcParams.update({'font.size': 16})
+        sns.set_theme(style="white",font_scale=2)
+        sns.scatterplot(x=self.pca_output[:,component_one],y=self.pca_output[:,component_two],hue=label,style=style_point,s=150)
+        plt.xlabel("Principal component {}".format(component_one+1)+' (variance explained: {})'.format(self.pca.explained_variance_ratio_[component_one]))
+        plt.ylabel("Principal component {}".format(component_two+1)+' (variance explained: {})'.format(self.pca.explained_variance_ratio_[component_two]))
+        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
