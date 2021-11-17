@@ -1,6 +1,8 @@
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import seaborn as sns
+from mpl_toolkits.mplot3d import Axes3D
+
 class PCAplot:
 
     def __init__(self,data,components):
@@ -34,3 +36,8 @@ class PCAplot:
         plt.xlabel("Principal component {}".format(component_one+1)+' (variance explained: {})'.format(self.pca.explained_variance_ratio_[component_one]))
         plt.ylabel("Principal component {}".format(component_two+1)+' (variance explained: {})'.format(self.pca.explained_variance_ratio_[component_two]))
         plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+
+    def plot_pca_3d(self,component_one,component_two,component_three,label=None,style_point=None):
+        fig = plt.figure()
+        ax = fig.add_subplot(projection='3d')
+        ax.scatter(self.pca_output[:,component_one], self.pca_output[:,component_two], self.pca_output[:,component_three],c=label,s=70)
