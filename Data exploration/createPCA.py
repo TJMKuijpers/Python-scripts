@@ -1,7 +1,8 @@
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import seaborn as sns
-from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
+import numpy as np
 
 class PCAplot:
 
@@ -10,6 +11,8 @@ class PCAplot:
         self.number_components=components
         self.pca=None
         self.pca_output=None
+        self.loadings=None
+        self.loading_matrix = None
 
     def perform_pca(self):
         pca=PCA(n_components=self.number_components,svd_solver='randomized')
@@ -37,7 +40,13 @@ class PCAplot:
         plt.ylabel("Principal component {}".format(component_two+1)+' (variance explained: {})'.format(self.pca.explained_variance_ratio_[component_two]))
         plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 
+
     def plot_pca_3d(self,component_one,component_two,component_three,label=None,style_point=None):
         fig = plt.figure()
         ax = fig.add_subplot(projection='3d')
         ax.scatter(self.pca_output[:,component_one], self.pca_output[:,component_two], self.pca_output[:,component_three],c=label,s=70)
+
+    def loading_information(self,data=None):
+        self.loadings = self.pca.components_.T * np.sqrt(self.pca.explained_variance_)
+        print(self.loadings)
+        self.loading_matrix = pd.DataFrame(self.loadings,index=data.columns)
