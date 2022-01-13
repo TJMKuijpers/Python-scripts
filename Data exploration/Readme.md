@@ -8,14 +8,38 @@ Seaborn (version 0.11.0) <br>
 
 <h5> How to run the functions? </h5>
 The first step is to import the function files in your main.py file:<br>
-```
+  
+```python
 from createPCA import PCAplot
 from readData import readDataFile
 from createTSNE import TSNEplot
 ```
+  
 To load a data file (txt or csv): <br>
-```
+  
+```python
 file_name='example.txt'
 data_set=readDataFile(file_name)
 ```
+  
 Based on the file type (txt or csv) the readData function will seelct '\t' or ','  as separator <br>
+To perform an PCA analysis:
+  
+```python
+pca_plot=PCAplot(data=data_set,components=10)
+pca_plot.perform_pca()
+# get the variance explained by the principal components
+pca_plot.plot_variance_explaned()
+pca_plot.plot_pca_results(component_one=0,component_two=1,label=None,style_point=None)
+# get the loading information
+pca_plot.loading_information(data=data_set)
+```
+  
+ As you can see, it is possible to set the label and style points for the samples in your data. To do so, provide an array with the information: <br>
+   
+ ```python
+ label_information=['A','A','A','A','B','B','B','B']
+ style_information=['o','o','o','o','s','s','s','s']
+ ```
+   
+  
