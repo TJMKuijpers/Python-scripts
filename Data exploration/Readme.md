@@ -23,6 +23,14 @@ data_set=readDataFile(file_name)
 ```
   
 Based on the file type (txt or csv) the readData function will seelct '\t' or ','  as separator <br>
+Please note that the PCA and TSNE analysis assume the data contains no NAs. NAs can be removed by using the following lines: <br>
+```python
+# remove NAs for PCA and TSNE  (row-wise: axis=0, column-wise=1)
+data_set=data_set.remove_NaN(axis_df=0)
+data_set=data_set.remove_NaN(axis_df=1)
+```
+  
+  
 To perform an PCA analysis:
   
 ```python
@@ -41,5 +49,15 @@ pca_plot.loading_information(data=data_set)
  label_information=['A','A','A','A','B','B','B','B']
  style_information=['o','o','o','o','s','s','s','s']
  ```
+ 
+ To run a TSNE analysis 
    
+ ```python
+tsne_plot=TSNEplot(data=data_set,components=2)
+tsne_plot.calculate_tsne()
+tsne_plot.plot_tsne_results(component_one=0,component_two=1,label=None,style_point=None)
+```
+  
+Again you can add label and style markers by defining them in a variable. <br>
+
   
