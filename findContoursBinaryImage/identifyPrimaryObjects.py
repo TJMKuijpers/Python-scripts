@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
 
-# read image
-img = cv2.imread('C:/Users/tkuijpe1/OneDrive - TU Eindhoven/Documents/01_Projects/04_ImageRecognitionFeatures/Surface_FeatureIdx_10.png')
+# Set location and load image
+image_to_read='' 
+img = cv2.imread(image_to_read)
 
 # convert to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
