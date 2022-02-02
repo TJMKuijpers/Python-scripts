@@ -17,3 +17,6 @@ class DataExploration:
         data_histogram_count = data_histogram.value_counts()
         sns.displot(data_histogram)
         return data_histogram_count
+
+
+    
