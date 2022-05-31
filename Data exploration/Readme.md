@@ -37,7 +37,7 @@ To perform an PCA analysis:
 pca_plot=PCAplot(data=data_set,components=10)
 pca_plot.perform_pca()
 # get the variance explained by the principal components
-pca_plot.plot_variance_explaned()
+pca_plot.plot_variance_explained()
 pca_plot.plot_pca_results(component_one=0,component_two=1,label=None,style_point=None)
 # get the loading information
 pca_plot.loading_information(data=data_set)
