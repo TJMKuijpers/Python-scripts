@@ -6,3 +6,6 @@ This repo contains a Jupyter Notebook to search the Encode website via their API
 <li> requests </li>
 <li> json </li>
 </ol>
+
+<b>Software license </b> <br>
+Software is licensed under BSD-2-clause. 
